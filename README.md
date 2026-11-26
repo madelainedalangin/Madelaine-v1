@@ -2,6 +2,8 @@
 
 Source code for my personal website, hosted on GitHub Pages at [madelainedalangin.com](https://madelainedalangin.com).
 
+![Preview of madelainedalangin.com](images/welcome.gif)
+
 It is a single page with four sections: About, Experience, Projects and Contact.
 
 ## Built with
@@ -31,7 +33,7 @@ Madelaine-v1/
 │   └── style.css   all styles, with a table of contents at the top
 ├── js/
 │   └── reveal.js   fade-up reveals and the scroll-linked photo blur
-└── images/         photos, project images and icons
+└── images/         photos, project images, icons and the README preview GIF
 ```
 
 ## Run it locally
