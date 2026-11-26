@@ -29,6 +29,8 @@ Madelaine-v1/
 ├── CNAME           custom domain for GitHub Pages
 ├── index.html      all page content
 ├── favicon.svg     browser tab icon
+├── files/
+│   └── MadelaineDalangin.pdf   my resume, linked from Contact
 ├── css/
 │   └── style.css   all styles, with a table of contents at the top
 ├── js/
