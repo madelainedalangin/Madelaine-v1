@@ -12,7 +12,7 @@ if ("IntersectionObserver" in window) {
         }
       }
     },
-    { rootMargin: "0px 0px -10% 0px" }
+    { rootMargin: "0px 0px -5% 0px" }
   );
 
   for (const element of document.querySelectorAll(SELECTOR)) {
@@ -29,6 +29,13 @@ function updatePhotoBlur() {
 updatePhotoBlur();
 window.addEventListener("scroll", updatePhotoBlur, { passive: true });
 window.addEventListener("resize", updatePhotoBlur);
+
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  for (const video of document.querySelectorAll("video[autoplay]")) {
+    video.removeAttribute("autoplay");
+    video.pause();
+  }
+}
 
 function lockCardHeights(grid) {
   if (grid.classList.contains("card-grid--locked")) {
