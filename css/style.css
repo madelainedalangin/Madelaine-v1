@@ -37,9 +37,7 @@
   --color-badge-fill: #403728;
 
   --color-page: #211d12;
-  --backdrop-blur: 12px;
-  --backdrop-brightness: 0.38;
-  --photo-brightness-scrolled: 0.55;
+  --photo-blur: 12px;
 
   --glass-fill: rgb(15 14 9 / 0.38);
   --glass-fill-solid: rgb(15 14 9 / 0.85);
@@ -55,8 +53,10 @@
   --button-fill-hover: #ffffff;
   --button-text: #211d12;
 
-  --font-body: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-body: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Mioya", Georgia, "Times New Roman", serif;
   --weight-regular: 400;
+  --weight-medium: 500;
   --weight-strong: 700;
 
   --label-size: 0.7rem;
@@ -100,6 +100,16 @@
 
 /* == 2. Base == */
 
+/* Mioya by Sora Sagano (dot colon), SIL Open Font License.
+   MioyaVF.ttf is the variable version: one file that covers every weight from 300 to 900. */
+@font-face {
+  font-family: "Mioya";
+  src: url("../fonts/MioyaVF.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -131,6 +141,7 @@ h2,
 h3,
 h4 {
   margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
   font-weight: var(--weight-strong);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -185,6 +196,12 @@ a:hover {
 
 .container > .section:first-child {
   margin-top: var(--space-5);
+}
+
+.section + .section {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-rule);
 }
 
 .section__title {
@@ -259,6 +276,8 @@ a:hover {
 .site-nav__brand {
   padding: var(--space-2) 0;
   color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
   font-weight: var(--weight-strong);
   text-decoration: none;
 }
@@ -277,11 +296,16 @@ a:hover {
 }
 
 .site-nav__link {
+  --link-pad: 0.55rem;
+  position: relative;
   display: block;
-  padding: var(--space-2) 0.55rem;
+  padding: var(--space-2) var(--link-pad);
   border-radius: var(--radius-pill);
   color: var(--color-ink);
+  font-family: var(--font-display);
   font-size: 0.95rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.01em;
   text-decoration: none;
 }
 
@@ -290,9 +314,24 @@ a:hover {
   color: var(--color-ink);
 }
 
+.site-nav__link[aria-current="true"] {
+  color: var(--color-accent);
+}
+
+.site-nav__link[aria-current="true"]::after {
+  content: "";
+  position: absolute;
+  right: var(--link-pad);
+  bottom: 0.25rem;
+  left: var(--link-pad);
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
 @media (min-width: 30rem) {
   .site-nav__link {
-    padding-inline: var(--space-3);
+    --link-pad: var(--space-3);
     font-size: 1rem;
   }
 }
@@ -367,14 +406,6 @@ a:hover {
 
 /* == 7. Background photo and hero (the typing line) == */
 
-.backdrop {
-  position: fixed;
-  inset: calc(-2 * var(--backdrop-blur));
-  z-index: -2;
-  background: url("../images/IMG_5023.jpg") center / cover no-repeat;
-  filter: blur(var(--backdrop-blur)) brightness(var(--backdrop-brightness));
-}
-
 .hero {
   position: relative;
   display: grid;
@@ -388,7 +419,7 @@ a:hover {
 }
 
 .hero__subtitle {
-  max-width: 42ch;
+  max-width: 60ch;
   margin: 0;
   color: #fff;
   font-size: clamp(0.95rem, 1.3vw, 1.1rem);
@@ -1085,10 +1116,9 @@ a:hover {
 
   .js .hero__photo {
     position: fixed;
-    inset: calc(-2 * var(--backdrop-blur));
-    filter:
-      blur(calc(var(--photo-progress, 0) * var(--backdrop-blur)))
-      brightness(calc(1 - var(--photo-progress, 0) * (1 - var(--photo-brightness-scrolled))));
+    inset: calc(-2 * var(--photo-blur));
+    filter: blur(calc(var(--photo-progress, 0) * var(--photo-blur)));
+    opacity: calc(1 - var(--photo-progress, 0));
   }
 
   @supports (animation-timeline: scroll()) {

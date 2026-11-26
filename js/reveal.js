@@ -20,15 +20,55 @@ if ("IntersectionObserver" in window) {
   }
 }
 
+const aboutSection = document.querySelector("#about");
+
+// 0 at the top of the page, 1 once About me reaches the spot the About link scrolls to
+// (just under the header, set by scroll-padding-top in style.css).
 function updatePhotoBlur() {
-  const blurDistance = window.innerHeight * 0.9;
-  const progress = Math.min(Math.max(window.scrollY / blurDistance, 0), 1);
+  const stopOffset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const fadeDistance = aboutSection
+    ? aboutSection.getBoundingClientRect().top + window.scrollY - stopOffset
+    : window.innerHeight * 0.9;
+  const progress = Math.min(Math.max(window.scrollY / Math.max(fadeDistance, 1), 0), 1);
   document.documentElement.style.setProperty("--photo-progress", progress.toFixed(3));
 }
 
 updatePhotoBlur();
 window.addEventListener("scroll", updatePhotoBlur, { passive: true });
 window.addEventListener("resize", updatePhotoBlur);
+
+const navLinks = [...document.querySelectorAll(".site-nav__link")];
+const navSections = navLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+// The current section is the last one whose top has scrolled past 40% of the screen.
+// At the very bottom of the page, the last section counts as current.
+function updateCurrentNav() {
+  const marker = window.innerHeight * 0.4;
+  const atBottom =
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  let current = null;
+  for (const section of navSections) {
+    if (section.getBoundingClientRect().top <= marker) {
+      current = section;
+    }
+  }
+  if (atBottom && navSections.length > 0) {
+    current = navSections[navSections.length - 1];
+  }
+  for (const link of navLinks) {
+    if (current && link.getAttribute("href") === `#${current.id}`) {
+      link.setAttribute("aria-current", "true");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  }
+}
+
+updateCurrentNav();
+window.addEventListener("scroll", updateCurrentNav, { passive: true });
+window.addEventListener("resize", updateCurrentNav);
 
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   for (const video of document.querySelectorAll("video[autoplay]")) {
