@@ -617,6 +617,16 @@ a:hover {
 @media (min-width: 48rem) {
   .about__intro {
     grid-template-columns: 16rem minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .about__photo {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .about__intro .prose > :last-child {
+    margin-bottom: 0;
   }
 }
 
