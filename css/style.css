@@ -416,6 +416,10 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
 }
 
+.card-grid--locked {
+  align-items: start;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -984,6 +988,10 @@ a:hover {
   .card-grid--three > .card:nth-child(3n).is-visible {
     animation-delay: 0.24s;
   }
+
+  .card-grid--locked {
+  align-items: start;
+}
 
   .js .timeline:not(.is-visible)::before {
     transform: scaleY(0);

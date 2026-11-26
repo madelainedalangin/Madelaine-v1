@@ -29,3 +29,42 @@ function updatePhotoBlur() {
 updatePhotoBlur();
 window.addEventListener("scroll", updatePhotoBlur, { passive: true });
 window.addEventListener("resize", updatePhotoBlur);
+
+function lockCardHeights(grid) {
+  if (grid.classList.contains("card-grid--locked")) {
+    return;
+  }
+  for (const card of grid.children) {
+    card.style.minHeight = `${card.offsetHeight}px`;
+  }
+  grid.classList.add("card-grid--locked");
+}
+
+function unlockCardHeights(grid) {
+  for (const card of grid.children) {
+    card.style.minHeight = "";
+  }
+  grid.classList.remove("card-grid--locked");
+}
+
+for (const details of document.querySelectorAll(".card-grid .card__details")) {
+  const grid = details.closest(".card-grid");
+  details.querySelector("summary").addEventListener("click", () => lockCardHeights(grid));
+  details.addEventListener("toggle", () => {
+    if (!grid.querySelector(".card__details[open]")) {
+      unlockCardHeights(grid);
+    }
+  });
+}
+
+let lastWidth = window.innerWidth;
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth === lastWidth) {
+    return;
+  }
+  lastWidth = window.innerWidth;
+  for (const grid of document.querySelectorAll(".card-grid--locked")) {
+    unlockCardHeights(grid);
+  }
+});
