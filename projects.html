@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Madelaine Dalangin</title>
+  <meta name="description"
+    content="Projects by Madelaine Dalangin: Munch, EspeonBot, EventBuddy, discord-xcode-presence and more.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts. Familjen Grotesk is the free fallback until ABC Oracle files are
+       added. Departure Mono and ABC Oracle are self-hosted: see css/style.css, section 1. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- SHARED HEADER: identical on all four pages, except which link has aria-current="page".
+       On the home page the name link is the current one. -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a class="site-nav__brand" href="index.html">Madelaine Dalangin</a>
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="about.html">About</a></li>
+        <li><a class="site-nav__link" href="projects.html" aria-current="page">Projects</a></li>
+        <li><a class="site-nav__link" href="experience.html">Experience</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- END SHARED HEADER -->
+
+  <main id="main" class="container">
+
+    <section class="page-intro" aria-labelledby="page-title">
+      <h1 id="page-title">Projects</h1>
+      <p class="page-intro__lead">
+        Things I've built, with the most backend-heavy work first. Open
+        "More details" on a card to see how it works.
+      </p>
+    </section>
+
+    <!-- ================= FEATURED: glass cards, two per row at most ================= -->
+    <section class="section" aria-labelledby="featured-title">
+      <h2 id="featured-title" class="section__title">Featured</h2>
+
+      <div class="card-grid">
+
+        <!-- MUNCH. Same card as on index.html. If you edit one, edit both. -->
+        <article class="panel card">
+          <div class="card__header">
+            <h3 class="card__title">Munch</h3>
+            <p class="card__label">team of 5</p>
+          </div>
+          <p class="card__summary">
+            A federated social network built for CMPUT 404. Each node runs its own
+            server and database, and people on different nodes can follow, like and
+            comment on each other's posts.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Python</li>
+            <li class="tag">Django</li>
+            <li class="tag">Django REST Framework</li>
+            <li class="tag">PostgreSQL</li>
+            <li class="tag">Heroku</li>
+          </ul>
+          <details class="card__details">
+            <summary>More details</summary>
+            <ul>
+              <li>Nodes share posts, likes, comments and follow requests by sending them to each other's inbox
+                endpoints.</li>
+              <li>Nodes authenticate to each other with HTTP Basic Auth, and our node federated with other teams' nodes.
+              </li>
+              <li>Posts can be public, friends-only or unlisted, and visibility rules hold across nodes.</li>
+              <li>113+ tests cover the user stories at the API and model level.</li>
+              <li>My role: full-stack developer. I worked on the backend API and data models, and built the HTML and CSS
+                pages that present the server's data.</li>
+            </ul>
+          </details>
+          <p class="card__links">
+            <a href="https://github.com/madelainedalangin/Munch">Code on GitHub<span class="visually-hidden">:
+                Munch</span></a>
+          </p>
+        </article>
+
+        <!-- ESPEONBOT -->
+        <article class="panel card">
+          <div class="card__header">
+            <h3 class="card__title">EspeonBot</h3>
+            <p class="card__label">Discord bot</p>
+          </div>
+          <p class="card__summary">
+            A Discord bot that tracks habits, logs activities, times focus sessions
+            and keeps reminding you until a task is done. It runs around the clock
+            on a hosted server.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Python</li>
+            <li class="tag">discord.py</li>
+            <li class="tag">SQLite</li>
+            <li class="tag">pytest</li>
+            <li class="tag">GitHub Actions</li>
+          </ul>
+          <details class="card__details">
+            <summary>More details</summary>
+            <ul>
+              <li>More than 20 commands, organized into cogs for tracking, logging, focus sessions and skips.</li>
+              <li>A scheduled reminder loop that respects each user's preferred reminder hour, with snooze.</li>
+              <li>Records are keyed on a composite user ID, so people in a shared server cannot overwrite each other's
+                data.</li>
+              <li>A duration parser that accepts combined units such as 1h30mi or 2w3d.</li>
+              <li>Logs skipped activities and replies with a roast, with a separate set of roasts for skipped lectures.
+              </li>
+              <li>Tests for the database, commands and helpers run automatically with GitHub Actions.</li>
+            </ul>
+          </details>
+          <p class="card__links">
+            <!-- TODO(M): check this link matches your repo name -->
+            <a href="https://github.com/madelainedalangin/EspeonBot">Code on GitHub<span class="visually-hidden">:
+                EspeonBot</span></a>
+          </p>
+        </article>
+
+        <!-- EVENTBUDDY -->
+        <article class="panel card">
+          <div class="card__header">
+            <h3 class="card__title">EventBuddy</h3>
+            <p class="card__label">team of 6</p>
+          </div>
+          <p class="card__summary">
+            An Android app for running events, built for CMPUT 301. Organizers create
+            events and check people in with QR codes, entrants join waitlists, and
+            admins moderate users and images.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Java</li>
+            <li class="tag">Android</li>
+            <li class="tag">Firebase</li>
+            <li class="tag">Figma</li>
+            <li class="tag">draw.io</li>
+          </ul>
+          <details class="card__details">
+            <summary>More details</summary>
+            <ul>
+              <li>Push notifications go through Firebase Cloud Messaging, sent by a small Node.js and Express service.
+              </li>
+              <li>QR code generation and scanning, plus a map with a marker for each person on an event's waitlist.</li>
+              <li>Admin tools to browse and remove users, images, QR codes and facilities.</li>
+              <li>Planned with UML class diagrams, CRC cards and UI prototypes. Unit tests run automatically with GitHub
+                Actions.</li>
+              <li>My role: Android developer. I designed the interface and system diagrams in Figma and draw.io,
+                implemented model classes and UI components in Java, and wrote the project documentation and meeting
+                notes.</li>
+            </ul>
+          </details>
+          <p class="card__links">
+            <!-- TODO(M): check that this repo is public, or remove the link -->
+            <a href="https://github.com/CMPUT301F24trojan1/trojan1-eventbuddy">Code on GitHub<span
+                class="visually-hidden">: EventBuddy</span></a>
+          </p>
+        </article>
+
+        <!-- DISCORD-XCODE-PRESENCE -->
+        <article class="panel card">
+          <div class="card__header">
+            <h3 class="card__title">discord-xcode-presence</h3>
+            <p class="card__label">macOS app</p>
+          </div>
+          <p class="card__summary">
+            A menu bar app that shows the file you have open in Xcode as your Discord
+            status, with a timer and a button that links to the project's GitHub repo.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Python</li>
+            <li class="tag">AppleScript</li>
+            <li class="tag">pypresence</li>
+            <li class="tag">rumps</li>
+            <li class="tag">PyInstaller</li>
+            <li class="tag">unittest</li>
+          </ul>
+          <details class="card__details">
+            <summary>More details</summary>
+            <ul>
+              <li>Asks Xcode for the active source file every 5 seconds through AppleScript.</li>
+              <li>Converts SSH git remotes into clean HTTPS links to meet Discord's rules for button links, so a token
+                stored in the remote is never shown.</li>
+              <li>Runs the presence loop on a background thread with automatic reconnection.</li>
+              <li>unittest suites mock subprocess, IPC and network calls, and run in GitHub Actions.</li>
+            </ul>
+          </details>
+          <p class="card__links">
+            <a href="https://github.com/madelainedalangin/discord-xcode-presence">Code on GitHub<span
+                class="visually-hidden">: discord-xcode-presence</span></a>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ================= MORE PROJECTS: plain list, no cards ================= -->
+    <section class="section" aria-labelledby="more-title">
+      <h2 id="more-title" class="section__title">More projects</h2>
+
+      <ul class="project-list">
+
+        <li class="project-list__item">
+          <h3 class="project-list__title">Zero Tick Farms</h3>
+          <p class="project-list__summary">
+            A port of <a href="https://github.com/tildejustin/zero-tick-crops">tildejustin's zero-tick-crops</a>
+            Fabric mod to Minecraft 26.3. It brings back 0-tick growth for bamboo,
+            cactus, sugar cane, kelp and other plants, and documents which blocks the
+            current game no longer supports.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Java</li>
+            <li class="tag">Fabric</li>
+            <li class="tag">Mixins</li>
+            <li class="tag">Gradle</li>
+          </ul>
+          <p class="project-list__links">
+            <a href="https://github.com/madelainedalangin/zero-tick-farms">Code on GitHub<span class="visually-hidden">:
+                Zero Tick Farms</span></a>
+          </p>
+        </li>
+
+        <li class="project-list__item">
+          <h3 class="project-list__title">MSnake</h3>
+          <p class="project-list__summary">
+            A snake game in the style of the old Nokia phones, controlled with
+            trackpad swipes instead of number keys. The snake gets faster every time
+            it eats.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Swift</li>
+            <li class="tag">SwiftUI</li>
+          </ul>
+          <p class="project-list__links">
+            <!-- TODO(M): check this link matches your repo name -->
+            <a href="https://github.com/madelainedalangin/MSnake">Code on GitHub<span class="visually-hidden">:
+                MSnake</span></a>
+          </p>
+        </li>
+
+        <li class="project-list__item">
+          <h3 class="project-list__title">Frogger</h3>
+          <p class="project-list__summary">
+            A road-crossing game that times each run and keeps track of your best
+            time. Art by Kenney, music by Section 31.
+          </p>
+          <ul class="tag-list" aria-label="Built with">
+            <li class="tag">Godot 4</li>
+            <li class="tag">GDScript</li>
+          </ul>
+          <p class="project-list__links">
+            <!-- TODO(M): check this link matches your repo name -->
+            <a href="https://github.com/madelainedalangin/frogger">Code on GitHub<span class="visually-hidden">:
+                Frogger</span></a>
+          </p>
+        </li>
+
+        <!-- WikiBot (CMPUT 461) is left out on purpose. Add it after the course
+             ends and you have checked the course policy on posting code. -->
+
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- SHARED FOOTER: identical on all four pages -->
+  <footer class="site-footer container">
+    <p class="site-footer__message">Thanks for stopping by.</p>
+    <ul class="site-footer__links">
+      <li><a href="mailto:madelainedalangin@protonmail.com">Email</a></li>
+      <li><a href="https://github.com/madelainedalangin">GitHub</a></li>
+      <!-- TODO(M): add your LinkedIn profile URL, then remove the comment markers around the next line -->
+      <!-- <li><a href="https://www.linkedin.com/in/YOUR-NAME">LinkedIn</a></li> -->
+    </ul>
+    <p class="site-footer__copyright">&copy; 2026 Madelaine Dalangin</p>
+  </footer>
+  <!-- END SHARED FOOTER -->
+</body>
+
+</html>
