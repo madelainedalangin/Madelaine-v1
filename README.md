@@ -67,7 +67,3 @@ File names are case-sensitive on GitHub Pages, so image paths in the code must m
 ## Deployment
 
 GitHub Pages publishes the `main` branch from the repository root. The `CNAME` file points the site to the custom domain.
-
-## License
-
-The code is available under the terms in [LICENSE](LICENSE). Photos, GIFs and written content are my own and are not covered by the license.
