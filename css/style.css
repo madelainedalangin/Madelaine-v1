@@ -76,7 +76,7 @@
   --content-width: 64rem;
   --prose-width: 65ch;
 
-  --header-height: 3.75rem;
+  --header-height: 3.95rem;
 
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   --type-speed: 85ms;
@@ -85,15 +85,16 @@
   --hero-peek: 9rem;
 }
 
-@media (max-width: 30rem) {
+/* Starting values only: js/reveal.js replaces --header-height with the header's real height. */
+@media (max-width: 52rem) {
   :root {
-    --header-height: 6.6rem;
+    --header-height: 6.8rem;
   }
 }
 
 @media (max-width: 22rem) {
   :root {
-    --header-height: 9.3rem;
+    --header-height: 9.5rem;
   }
 }
 
@@ -290,7 +291,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1);
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
 }
@@ -336,7 +337,66 @@ a:hover {
   }
 }
 
-@media (max-width: 30rem) {
+/* GitHub, LinkedIn and email icons.
+   Each PNG is a solid circle with a see-through symbol, so it is used as a mask:
+   the circle takes the link's text color (white, gold on hover). */
+.site-nav__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__icon {
+  display: block;
+  padding: 0.25rem;
+  border-radius: 50%;
+  color: var(--color-ink);
+}
+
+.site-nav__icon:hover {
+  color: var(--color-accent);
+}
+
+.site-nav__icon-shape {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.site-nav__icon--github {
+  --icon: url("../images/github.png");
+}
+
+.site-nav__icon--linkedin {
+  --icon: url("../images/linkedin.png");
+}
+
+.site-nav__icon--email {
+  --icon: url("../images/email.png");
+}
+
+/* Narrow screens: name and icons on the first row, section links centered on the second */
+@media (max-width: 52rem) {
+  .site-nav__social {
+    order: 1;
+  }
+
+  .site-nav__list {
+    order: 2;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+/* Very narrow screens: the icons no longer fit beside the name, so center every row */
+@media (max-width: 22rem) {
   .site-nav {
     justify-content: center;
   }

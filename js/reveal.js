@@ -20,6 +20,15 @@ if ("IntersectionObserver" in window) {
   }
 }
 
+// Keep --header-height equal to the real header height. The header changes height
+// when the nav wraps onto more rows on narrow screens or when the fonts finish loading.
+const siteHeader = document.querySelector(".site-header");
+if (siteHeader && "ResizeObserver" in window) {
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--header-height", `${siteHeader.offsetHeight}px`);
+  }).observe(siteHeader);
+}
+
 const aboutSection = document.querySelector("#about");
 
 // 0 at the top of the page, 1 once About me reaches the spot the About link scrolls to
